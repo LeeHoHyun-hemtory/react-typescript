@@ -52,8 +52,12 @@ const STDPageBurronContainer = styled.div`
 const STDPageButton = styled.button`
   width: 50px;
   height: 35px;
+  font-size: 1.5rem;
   ${({ current }: { current: boolean }) => css`
-    ${current && css`background-color: cyan;`}
+    ${current && css`
+      background-color: #348bee;
+      color: white;
+    `}
   `};
 
   & + & {
@@ -61,7 +65,7 @@ const STDPageButton = styled.button`
   }
 
   &:hover {
-    background-color: skyblue;
+    background-color: cyan;
   }
 `;
 
