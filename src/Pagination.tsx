@@ -11,40 +11,42 @@ interface Item {
   contents: number;
 }
 
+const flexCenter = {
+  flexSet: (
+    justifyContent = "center",
+    alignItems = "center",
+    flexDirection = "column"
+  ) => css`
+    display: flex;
+    justify-content: ${justifyContent};
+    align-items: ${alignItems};
+    flex-direction: ${flexDirection};
+  `,
+};
+
 const STDContainer = styled.div`
   width: 100%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${flexCenter.flexSet()};
 `;
 
 const STDItemsContainer = styled.div`
   width: 80%;
   height: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${flexCenter.flexSet()};
   padding: 5%;
-  background: gray;
 `;
 
 const STDItems = styled.div`
   width: 80%;
   height: 10%;
   border: 1px solid black;
-  background: white;
 `;
 
 const STDPageBurronContainer = styled.div`
   width: 50%;
   height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: green;
+  ${flexCenter.flexSet('center', 'center', "row")};
 `;
 
 const STDPageButton = styled.button`
@@ -64,12 +66,12 @@ const STDPageButton = styled.button`
 `;
 
 const Pagination = () => {
-  const LIMIT = 10;
-  const PAGELIMIT = 5;
-  const [offset, setOffset] = useState(0);
-  const [items, setItems] = useState<Item[]>([]);
-  const [pages, setPages] = useState<Page[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const LIMIT = 10; // 한 번에 보여질 content 개수
+  const PAGELIMIT = 5; // 만들어질 버튼 개수
+  const [offset, setOffset] = useState(0); // 현재 페이지에 나타나는 content 번호
+  const [items, setItems] = useState<Item[]>([]); // 총 아이템 개수
+  const [pages, setPages] = useState<Page[]>([]); // 페이지 개수
+  const [currentPage, setCurrentPage] = useState(1); // 현재 보이는 페이지
 
   useEffect(() => {
     const pagesArr: Page[] = [];
@@ -79,6 +81,7 @@ const Pagination = () => {
       pagesArr.push({ value: i, current: i === 1 ? true : false });
     }
 
+    // 아이템 추가
     for(let i = 0; i < 100; i++) {
       itemsArr.push({ id: i, contents: i });
     }
@@ -95,21 +98,22 @@ const Pagination = () => {
 
   const btnDirectOnClick = (dir: string) => {
     let val = 0;
+
     if(dir === '<' && pages[0].value > 1) {
-      setPages(pages.map(el => ({ ...el, value: el.value - 1 })));
+      setPages(pages.map(el => ({ value: --el.value, current: el.value === currentPage ? true : false })));
     }
     else if(dir === '>' && pages[PAGELIMIT - 1].value < Math.ceil(items.length / LIMIT)) {
-      setPages(pages.map(el => ({ ...el, value: el.value + 1 })));
+      setPages(pages.map(el => ({ value: ++el.value, current: el.value === currentPage ? true : false })));
     }
     else if(dir === '<<' && pages[0].value > 1) {
-      setPages(pages.map(el => ({ ...el, value: ++val })));
+      setPages(pages.map(el => ({ value: ++val, current: val === currentPage ? true : false })));
     }
     else if(dir === '>>' && pages[PAGELIMIT - 1].value < Math.ceil(items.length / LIMIT)) {
       val = Math.ceil(items.length / LIMIT) - PAGELIMIT;
-      setPages(pages.map(el => ({ ...el, value: ++val })));
+      setPages(pages.map(el => ({ value: ++val, current: val === currentPage ? true : false })));
     }
   }
-
+console.log(pages, currentPage)
   return (
     <STDContainer>
       <STDItemsContainer>
