@@ -102,22 +102,23 @@ const Pagination = () => {
 
   const btnDirectOnClick = (dir: string) => {
     let val = 0;
+    const lastPage = Math.ceil(items.length / LIMIT);
 
     if(dir === '<' && pages[0].value > 1) {
-      setPages(pages.map(el => ({ value: --el.value, current: el.value === currentPage ? true : false })));
+      setPages(pages.map(el => ({ value: --el.value, current: el.value === currentPage })));
     }
-    else if(dir === '>' && pages[PAGELIMIT - 1].value < Math.ceil(items.length / LIMIT)) {
-      setPages(pages.map(el => ({ value: ++el.value, current: el.value === currentPage ? true : false })));
+    else if(dir === '>' && pages[PAGELIMIT - 1].value < lastPage) {
+      setPages(pages.map(el => ({ value: ++el.value, current: el.value === currentPage })));
     }
     else if(dir === '<<' && pages[0].value > 1) {
-      setPages(pages.map(el => ({ value: ++val, current: val === currentPage ? true : false })));
+      setPages(pages.map(el => ({ value: ++val, current: val === currentPage })));
     }
-    else if(dir === '>>' && pages[PAGELIMIT - 1].value < Math.ceil(items.length / LIMIT)) {
-      val = Math.ceil(items.length / LIMIT) - PAGELIMIT;
-      setPages(pages.map(el => ({ value: ++val, current: val === currentPage ? true : false })));
+    else if(dir === '>>' && pages[PAGELIMIT - 1].value < lastPage) {
+      val = lastPage - PAGELIMIT;
+      setPages(pages.map(el => ({ value: ++val, current: val === currentPage })));
     }
   }
-console.log(pages, currentPage)
+
   return (
     <STDContainer>
       <STDItemsContainer>
