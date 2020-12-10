@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled, {css} from 'styled-components';
 
-interface Page {
-  value: number;
-  current: boolean;
-}
-
 interface Item {
   id: number;
   contents: number;
@@ -49,12 +44,12 @@ const STDPageBurronContainer = styled.div`
   ${flexCenter.flexSet('center', 'center', "row")};
 `;
 
-const STDPageButton = styled.button`
+const STDPageButton = styled.button<{ value?: number, currentPage?: number }>`
   width: 50px;
   height: 35px;
   font-size: 1.5rem;
-  ${({ current }: { current: boolean }) => css`
-    ${current && css`
+  ${({ value, currentPage }) => css`
+    ${(value && (value === currentPage)) && css`
       background-color: #348bee;
       color: white;
     `}
@@ -74,15 +69,15 @@ const Pagination = () => {
   const PAGELIMIT = 5; // 만들어질 버튼 개수
   const [offset, setOffset] = useState(0); // 현재 페이지에 나타나는 content 번호
   const [items, setItems] = useState<Item[]>([]); // 총 아이템 개수
-  const [pages, setPages] = useState<Page[]>([]); // 페이지 개수
+  const [pages, setPages] = useState<number[]>([]); // 총 페이지 개수
   const [currentPage, setCurrentPage] = useState(1); // 현재 보이는 페이지
 
   useEffect(() => {
-    const pagesArr: Page[] = [];
+    const pagesArr = [];
     const itemsArr: Item[] = [];
 
     for(let i = 1; i <= PAGELIMIT; i++) {
-      pagesArr.push({ value: i, current: i === 1 ? true : false });
+      pagesArr.push(i);
     }
 
     // 아이템 추가
@@ -95,27 +90,24 @@ const Pagination = () => {
   }, []);
 
   const btnOnClick = (num: number) => {
-    setPages(pages.map(el => ({ ...el, current: el.value === num ? true : false })));
     setOffset((num - 1) * LIMIT);
     setCurrentPage(num);
   }
 
   const btnDirectOnClick = (dir: string) => {
-    let val = 0;
     const lastPage = Math.ceil(items.length / LIMIT);
 
-    if(dir === '<' && pages[0].value > 1) {
-      setPages(pages.map(el => ({ value: --el.value, current: el.value === currentPage })));
+    if(dir === '<' && pages[0] > 1) {
+      setPages(pages.map(num => --num));
     }
-    else if(dir === '>' && pages[PAGELIMIT - 1].value < lastPage) {
-      setPages(pages.map(el => ({ value: ++el.value, current: el.value === currentPage })));
+    else if(dir === '>' && pages[PAGELIMIT - 1] < lastPage) {
+      setPages(pages.map(num => ++num));
     }
-    else if(dir === '<<' && pages[0].value > 1) {
-      setPages(pages.map(el => ({ value: ++val, current: val === currentPage })));
+    else if(dir === '<<' && pages[0] > 1) {
+      setPages(pages.map((num, idx) => idx + 1));
     }
-    else if(dir === '>>' && pages[PAGELIMIT - 1].value < lastPage) {
-      val = lastPage - PAGELIMIT;
-      setPages(pages.map(el => ({ value: ++val, current: val === currentPage })));
+    else if(dir === '>>' && pages[PAGELIMIT - 1] < lastPage) {
+      setPages(pages.map((num, idx) => lastPage - PAGELIMIT + idx + 1));
     }
   }
 
@@ -129,11 +121,11 @@ const Pagination = () => {
         })}
       </STDItemsContainer>
       <STDPageBurronContainer>
-        <STDPageButton current={false} onClick={() => btnDirectOnClick('<<')}>{'<<'}</STDPageButton>
-        <STDPageButton current={false} onClick={() => btnDirectOnClick('<')}>{'<'}</STDPageButton>
-        {pages.map(el => (<STDPageButton key={el.value} current={el.current} onClick={() => btnOnClick(el.value)}>{el.value}</STDPageButton>))}
-        <STDPageButton current={false} onClick={() => btnDirectOnClick('>')}>{'>'}</STDPageButton>
-        <STDPageButton current={false} onClick={() => btnDirectOnClick('>>')}>{'>>'}</STDPageButton>
+        <STDPageButton onClick={() => btnDirectOnClick('<<')}>{'<<'}</STDPageButton>
+        <STDPageButton onClick={() => btnDirectOnClick('<')}>{'<'}</STDPageButton>
+        {pages.map(num => (<STDPageButton key={num} value={num} currentPage={currentPage} onClick={() => btnOnClick(num)}>{num}</STDPageButton>))}
+        <STDPageButton onClick={() => btnDirectOnClick('>')}>{'>'}</STDPageButton>
+        <STDPageButton onClick={() => btnDirectOnClick('>>')}>{'>>'}</STDPageButton>
       </STDPageBurronContainer>
     </STDContainer>
   );
