@@ -2,6 +2,7 @@
 
 ## tech stack
 - React.js
+- Hooks
 - styled-components
 - typescript
 
