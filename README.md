@@ -1,6 +1,9 @@
 # React - typescript 테스트용
 
-## styled-components
+## tech stack
+- React.js
+- styled-components
+- typescript
 
 ---
 
