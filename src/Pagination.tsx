@@ -1,32 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import styled, {css} from 'styled-components';
 
-interface Page {
-  value: number;
-  current: boolean;
-}
-
 interface Item {
   id: number;
   contents: number;
 }
 
+const flexCenter = {
+  flexSet: (
+    justifyContent = "center",
+    alignItems = "center",
+    flexDirection = "column"
+  ) => css`
+    display: flex;
+    justify-content: ${justifyContent};
+    align-items: ${alignItems};
+    flex-direction: ${flexDirection};
+  `,
+};
+
 const STDContainer = styled.div`
   width: 100%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${flexCenter.flexSet()};
 `;
 
 const STDItemsContainer = styled.div`
   width: 80%;
   height: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${flexCenter.flexSet()};
   padding: 5%;
 `;
 
@@ -39,50 +41,75 @@ const STDItems = styled.div`
 const STDPageBurronContainer = styled.div`
   width: 50%;
   height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${flexCenter.flexSet('center', 'center', "row")};
 `;
 
-const STDPageButton = styled.button`
+const STDPageButton = styled.button<{ value?: number, currentPage?: number }>`
   width: 50px;
   height: 35px;
-  ${({ current }: { current: boolean }) => css`
-    ${current && css`background-color: blue;`}
+  font-size: 1.5rem;
+  ${({ value, currentPage }) => css`
+    ${(value && (value === currentPage)) && css`
+      background-color: #348bee;
+      color: white;
+    `}
   `};
 
   & + & {
     margin-left: 10px;
   }
+
+  &:hover {
+    background-color: cyan;
+  }
 `;
 
 const Pagination = () => {
-  const LIMIT = 10;
-  const [offset, setOffset] = useState(0);
-  const [items, setItems] = useState<Item[]>([]);
-  const [pages, setPages] = useState<Page[]>([]);
-
-  const btnOnClick = (num: number) => {
-    setPages(pages.map(el => ({...el, current: el.value === num ? true : false})));
-    setOffset((num - 1) * LIMIT);
-  }
+  const LIMIT = 10; // 한 번에 보여질 content 개수
+  const PAGELIMIT = 5; // 만들어질 버튼 개수
+  const [offset, setOffset] = useState(0); // 현재 페이지에 나타나는 content 번호
+  const [items, setItems] = useState<Item[]>([]); // 총 아이템 개수
+  const [pages, setPages] = useState<number[]>([]); // 총 페이지 개수
+  const [currentPage, setCurrentPage] = useState(1); // 현재 보이는 페이지
 
   useEffect(() => {
-    const totalPages = Math.ceil(items.length / LIMIT);
-    const pagesArr: Page[] = [];
+    const pagesArr = [];
     const itemsArr: Item[] = [];
 
-    for(let i = 1; i <= totalPages; i++) {
-      pagesArr.push({value: i, current: i === 1 ? true : false});
+    for(let i = 1; i <= PAGELIMIT; i++) {
+      pagesArr.push(i);
     }
 
+    // 아이템 추가
     for(let i = 0; i < 100; i++) {
-      itemsArr.push({id: i, contents: i});
+      itemsArr.push({ id: i, contents: i });
     }
 
     setPages(pagesArr);
     setItems(itemsArr);
   }, []);
+
+  const btnOnClick = (num: number) => {
+    setOffset((num - 1) * LIMIT);
+    setCurrentPage(num);
+  }
+
+  const btnDirectOnClick = (dir: string) => {
+    const lastPage = Math.ceil(items.length / LIMIT);
+
+    if(dir === '<' && pages[0] > 1) {
+      setPages(pages.map(num => --num));
+    }
+    else if(dir === '>' && pages[PAGELIMIT - 1] < lastPage) {
+      setPages(pages.map(num => ++num));
+    }
+    else if(dir === '<<' && pages[0] > 1) {
+      setPages(pages.map((num, idx) => idx + 1));
+    }
+    else if(dir === '>>' && pages[PAGELIMIT - 1] < lastPage) {
+      setPages(pages.map((num, idx) => lastPage - PAGELIMIT + idx + 1));
+    }
+  }
 
   return (
     <STDContainer>
@@ -94,11 +121,11 @@ const Pagination = () => {
         })}
       </STDItemsContainer>
       <STDPageBurronContainer>
-        <STDPageButton current={false}>{'<<'}</STDPageButton>
-        <STDPageButton current={false}>{'<'}</STDPageButton>
-        {pages.map(el => (<STDPageButton key={el.value} current={el.current} onClick={() => btnOnClick(el.value)}>{el.value}</STDPageButton>))}
-        <STDPageButton current={false}>{'>'}</STDPageButton>
-        <STDPageButton current={false}>{'>>'}</STDPageButton>
+        <STDPageButton onClick={() => btnDirectOnClick('<<')}>{'<<'}</STDPageButton>
+        <STDPageButton onClick={() => btnDirectOnClick('<')}>{'<'}</STDPageButton>
+        {pages.map(num => (<STDPageButton key={num} value={num} currentPage={currentPage} onClick={() => btnOnClick(num)}>{num}</STDPageButton>))}
+        <STDPageButton onClick={() => btnDirectOnClick('>')}>{'>'}</STDPageButton>
+        <STDPageButton onClick={() => btnDirectOnClick('>>')}>{'>>'}</STDPageButton>
       </STDPageBurronContainer>
     </STDContainer>
   );
