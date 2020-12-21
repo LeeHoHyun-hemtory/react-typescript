@@ -28,14 +28,12 @@ const STDItemsContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 5%;
-  background: gray;
 `;
 
 const STDItems = styled.div`
   width: 80%;
   height: 10%;
   border: 1px solid black;
-  background: white;
 `;
 
 const STDPageBurronContainer = styled.div`
@@ -44,7 +42,6 @@ const STDPageBurronContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: green;
 `;
 
 const STDPageButton = styled.button`
