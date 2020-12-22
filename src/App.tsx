@@ -6,8 +6,8 @@ import FireBaseEX from './FireBaseEX';
 function App() {
   return (
     <>
-      {/* <Pagination /> */}
-      <FireBaseEX />
+      <Pagination />
+      {/* <FireBaseEX /> */}
     </>
   );
 }

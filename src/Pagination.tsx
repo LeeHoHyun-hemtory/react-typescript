@@ -67,7 +67,7 @@ const STDPageButton = styled.button<{ value?: number, currentPage?: number }>`
 const Pagination = () => {
   const LIMIT = 10; // 한 번에 보여질 content 개수
   const PAGELIMIT = 5; // 만들어질 버튼 개수
-  const [offset, setOffset] = useState(0); // 현재 페이지에 나타나는 content 번호
+  const [offset, setOffset] = useState(0); // 현재 페이지에 나타나는 content 시작 번호
   const [items, setItems] = useState<Item[]>([]); // 총 아이템 개수
   const [pages, setPages] = useState<number[]>([]); // 총 페이지 개수
   const [currentPage, setCurrentPage] = useState(1); // 현재 보이는 페이지
@@ -99,15 +99,23 @@ const Pagination = () => {
 
     if(dir === '<' && pages[0] > 1) {
       setPages(pages.map(num => --num));
+      setCurrentPage(currentPage - 1);
+      setOffset(offset - 10);
     }
     else if(dir === '>' && pages[PAGELIMIT - 1] < lastPage) {
       setPages(pages.map(num => ++num));
+      setCurrentPage(currentPage + 1);
+      setOffset(offset + 10);
     }
     else if(dir === '<<' && pages[0] > 1) {
       setPages(pages.map((num, idx) => idx + 1));
+      setCurrentPage(1);
+      setOffset(0);
     }
     else if(dir === '>>' && pages[PAGELIMIT - 1] < lastPage) {
       setPages(pages.map((num, idx) => lastPage - PAGELIMIT + idx + 1));
+      setCurrentPage(lastPage);
+      setOffset((lastPage - 1) * LIMIT);
     }
   }
 
