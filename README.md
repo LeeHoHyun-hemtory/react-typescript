@@ -16,3 +16,6 @@
 
 ## src/FireBaseEX.tsx
 - firebase CRUD 간단한 예제 파일
+
+## src/Slider.tsx
+- 기본 Slider 기능 만들기
