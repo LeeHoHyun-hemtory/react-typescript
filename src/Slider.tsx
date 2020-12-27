@@ -81,7 +81,7 @@ const Slider = () => {
 
     setImages(imgArr);
   }, []);
-console.log(xPosition)
+
   const moveImage = (dir: string) => {
     if(dir === 'left' && xPosition > (images.length - 1) * width * -1) {
       setXPosition(xPosition - width);  
