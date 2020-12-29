@@ -19,3 +19,6 @@
 
 ## src/Slider.tsx
 - 기본 Slider 기능 만들기
+
+## src/InfiniteSlider.tsx
+- 무한 Slider 기능 만들기
