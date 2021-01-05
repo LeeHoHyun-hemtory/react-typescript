@@ -92,7 +92,7 @@ const InfiniteSlider = () => {
     if(dir === 'left') {
       if(xPosition === (images.length - 1) * width * -1) {
         setTransition(0);
-        setXPosition(width * -1)
+        setXPosition(width * -1);
       }
       else {
         setTransition(1);
@@ -110,7 +110,7 @@ const InfiniteSlider = () => {
       }
     }
   }
-console.log(xPosition)
+
   return (
     <STDContainer>
       <STDSliderContainer width={width} height={height}>
