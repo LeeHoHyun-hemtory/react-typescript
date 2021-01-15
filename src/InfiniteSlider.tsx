@@ -15,8 +15,8 @@ const STDContainer = styled.div`
 
 const STDSliderContainer = styled.div<{ width: number, height: number }>`
   ${({ width, height }) => css`
-      width: ${width}px;
-      height: ${height}px;
+    width: ${width}px;
+    height: ${height}px;
   `}
   position: relative;
 `;
@@ -38,7 +38,7 @@ const STDImage = styled.div<{ xPosition: number, width: number, height: number, 
     ${({ width, height }) => css`
       width: ${width}px;
       height: ${height}px;
-  `}
+    `}
   }
 `;
 
@@ -68,9 +68,10 @@ const STDArrowButton = styled.button<{ dir: string }>`
 const InfiniteSlider = () => {
   const width = 800;
   const height = 600;
-  const [images, setImages] = useState<IImage[]>([]);
-  const [xPosition, setXPosition] = useState(width * -1);
-  const [transition, setTransition] = useState(1);
+  const [images, setImages] = useState<IImage[]>([]); // 사진 배열
+  const [xPosition, setXPosition] = useState(width * -1); // 사진 위치
+  const [transition, setTransition] = useState(1); // 사진 넘어가는 transition 시간
+  const [mouseActive, setMouseActive] = useState(true); // 슬라이더 넘기기 mouse 활성, 비활성
 
   useEffect(() => {
     const imgArr = [
@@ -88,26 +89,29 @@ const InfiniteSlider = () => {
     setImages(imgArr);
   }, []);
 
-  const moveImage = (dir: string) => {
-    if(dir === 'left') {
-      if(xPosition === (images.length - 1) * width * -1) {
-        setTransition(0);
-        setXPosition(width * -1);
-      }
-      else {
-        setTransition(1);
-        setXPosition(xPosition - width);
-      }
-    }
-    else if(dir === 'right') {
-      if(xPosition === 0) {
+  useEffect(() => {
+    setTimeout(() => {
+      if(!xPosition) {
         setTransition(0);
         setXPosition((images.length - 2) * width * -1);
       }
-      else {
-        setTransition(1);
-        setXPosition(xPosition + width);
+      else if(xPosition === (images.length - 1) * width * -1) {
+        setTransition(0);
+        setXPosition(width * -1);
       }
+      setMouseActive(true);
+    }, 1000);
+  }, [xPosition]);
+
+  const moveImage = (dir: string) => {
+    setMouseActive(false);
+    if(dir === 'left' && mouseActive) {
+      setTransition(1);
+      setXPosition(xPosition - width);
+    }
+    else if(dir === 'right' && mouseActive) {
+      setTransition(1);
+      setXPosition(xPosition + width);
     }
   }
 
