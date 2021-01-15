@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, {css} from 'styled-components';
 
-interface Item {
+interface IItem {
   id: number;
   contents: number;
 }
@@ -68,13 +68,13 @@ const Pagination = () => {
   const LIMIT = 10; // 한 번에 보여질 content 개수
   const PAGELIMIT = 5; // 만들어질 버튼 개수
   const [offset, setOffset] = useState(0); // 현재 페이지에 나타나는 content 시작 번호
-  const [items, setItems] = useState<Item[]>([]); // 총 아이템 개수
+  const [items, setItems] = useState<IItem[]>([]); // 총 아이템 개수
   const [pages, setPages] = useState<number[]>([]); // 총 페이지 개수
   const [currentPage, setCurrentPage] = useState(1); // 현재 보이는 페이지
 
   useEffect(() => {
     const pagesArr = [];
-    const itemsArr: Item[] = [];
+    const itemsArr: IItem[] = [];
 
     for(let i = 1; i <= PAGELIMIT; i++) {
       pagesArr.push(i);
