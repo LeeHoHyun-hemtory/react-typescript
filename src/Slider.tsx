@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
+import mixin from './styles/mixin';
 
 interface IImage {
   id: number;
   url: string;
 }
 
-const STDContainer = styled.div`
+const SCContainer = styled.div`
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${mixin.flexSet('center', 'center', 'row')};
 `;
 
-const STDSliderContainer = styled.div<{ width: number, height: number }>`
+const SCSliderContainer = styled.div<{ width: number, height: number }>`
   ${({ width, height }) => css`
       width: ${width}px;
       height: ${height}px;
@@ -21,14 +20,14 @@ const STDSliderContainer = styled.div<{ width: number, height: number }>`
   position: relative;
 `;
 
-const STDImageContainer = styled.div`
+const SCImageContainer = styled.div`
   width: 100%;
   position: absolute;
   display: flex;
   overflow: hidden;
 `;
 
-const STDImage = styled.div<{ xPosition: number, width: number, height: number }>`
+const SCImage = styled.div<{ xPosition: number, width: number, height: number }>`
   ${({ xPosition }) => css`
     transform: translateX(${xPosition}px);
   `}
@@ -42,7 +41,7 @@ const STDImage = styled.div<{ xPosition: number, width: number, height: number }
   }
 `;
 
-const STDArrowButton = styled.button<{ dir: string }>`
+const SCArrowButton = styled.button<{ dir: string }>`
   width: 150px;
   height: 600px;
   position: absolute;
@@ -92,17 +91,17 @@ const Slider = () => {
   }
 
   return (
-    <STDContainer>
-      <STDSliderContainer width={width} height={height}>
-        <STDImageContainer>
-          {images.map(el => <STDImage key={el.id} xPosition={xPosition} width={width} height={height}>
+    <SCContainer>
+      <SCSliderContainer width={width} height={height}>
+        <SCImageContainer>
+          {images.map(el => <SCImage key={el.id} xPosition={xPosition} width={width} height={height}>
             <img src={el.url} alt={`강아지 ${el.id}`}></img>
-          </STDImage>)}
-        </STDImageContainer>
-        <STDArrowButton dir={'left'} onClick={() => moveImage('left')}>{'<'}</STDArrowButton>
-        <STDArrowButton dir={'right'} onClick={() => moveImage('right')}>{'>'}</STDArrowButton>
-      </STDSliderContainer>
-    </STDContainer>
+          </SCImage>)}
+        </SCImageContainer>
+        <SCArrowButton dir={'left'} onClick={() => moveImage('left')}>{'<'}</SCArrowButton>
+        <SCArrowButton dir={'right'} onClick={() => moveImage('right')}>{'>'}</SCArrowButton>
+      </SCSliderContainer>
+    </SCContainer>
   );
 };
 

@@ -1,50 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import styled, {css} from 'styled-components';
+import mixin from './styles/mixin';
 
 interface IItem {
   id: number;
   contents: number;
 }
 
-const flexCenter = {
-  flexSet: (
-    justifyContent = "center",
-    alignItems = "center",
-    flexDirection = "column"
-  ) => css`
-    display: flex;
-    justify-content: ${justifyContent};
-    align-items: ${alignItems};
-    flex-direction: ${flexDirection};
-  `,
-};
-
-const STDContainer = styled.div`
+const SCContainer = styled.div`
   width: 100%;
   height: 100vh;
-  ${flexCenter.flexSet()};
+  ${mixin.flexSet()};
 `;
 
-const STDItemsContainer = styled.div`
+const SCItemsContainer = styled.div`
   width: 80%;
   height: 60%;
-  ${flexCenter.flexSet()};
+  ${mixin.flexSet()};
   padding: 5%;
 `;
 
-const STDItems = styled.div`
+const SCItems = styled.div`
   width: 80%;
   height: 10%;
   border: 1px solid black;
 `;
 
-const STDPageBurronContainer = styled.div`
+const SCPageBurronContainer = styled.div`
   width: 50%;
   height: 20%;
-  ${flexCenter.flexSet('center', 'center', "row")};
+  ${mixin.flexSet('center', 'center', 'row')};
 `;
 
-const STDPageButton = styled.button<{ value?: number, currentPage?: number }>`
+const SCPageButton = styled.button<{ value?: number, currentPage?: number }>`
   width: 50px;
   height: 35px;
   font-size: 1.5rem;
@@ -120,22 +108,22 @@ const Pagination = () => {
   }
 
   return (
-    <STDContainer>
-      <STDItemsContainer>
+    <SCContainer>
+      <SCItemsContainer>
         {items.map(el => {
           if(el.id >= offset && el.id < offset + LIMIT) {
-            return <STDItems key={el.id}>{el.contents}</STDItems>
+            return <SCItems key={el.id}>{el.contents}</SCItems>
           }
         })}
-      </STDItemsContainer>
-      <STDPageBurronContainer>
-        <STDPageButton onClick={() => btnDirectOnClick('<<')}>{'<<'}</STDPageButton>
-        <STDPageButton onClick={() => btnDirectOnClick('<')}>{'<'}</STDPageButton>
-        {pages.map(num => (<STDPageButton key={num} value={num} currentPage={currentPage} onClick={() => btnOnClick(num)}>{num}</STDPageButton>))}
-        <STDPageButton onClick={() => btnDirectOnClick('>')}>{'>'}</STDPageButton>
-        <STDPageButton onClick={() => btnDirectOnClick('>>')}>{'>>'}</STDPageButton>
-      </STDPageBurronContainer>
-    </STDContainer>
+      </SCItemsContainer>
+      <SCPageBurronContainer>
+        <SCPageButton onClick={() => btnDirectOnClick('<<')}>{'<<'}</SCPageButton>
+        <SCPageButton onClick={() => btnDirectOnClick('<')}>{'<'}</SCPageButton>
+        {pages.map(num => (<SCPageButton key={num} value={num} currentPage={currentPage} onClick={() => btnOnClick(num)}>{num}</SCPageButton>))}
+        <SCPageButton onClick={() => btnDirectOnClick('>')}>{'>'}</SCPageButton>
+        <SCPageButton onClick={() => btnDirectOnClick('>>')}>{'>>'}</SCPageButton>
+      </SCPageBurronContainer>
+    </SCContainer>
   );
 };
 

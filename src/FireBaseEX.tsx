@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import firebase from './FireBase';
+import mixin from './styles/mixin';
 
 interface IPropsUserData {
   id: string;
@@ -9,10 +10,7 @@ interface IPropsUserData {
 };
 
 const STDContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${mixin.flexSet()};
   height: 100vh;
 `;
 
@@ -23,7 +21,7 @@ const FirebaseDB = () => {
   const userRef = firebase.database().ref('users');
 
   useEffect(() => {
-    userRef.on('value', snapshot => {
+    userRef.on('value', (snapshot: any) => {
       const users = snapshot.val();
       const usersData: IPropsUserData[] = [];
       for(let id in users) {
