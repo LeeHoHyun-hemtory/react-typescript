@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import mixin from './styles/mixin';
+import Nav from '../../component/nav/Nav';
+import mixin from '../../styles/mixin';
 
 interface IImage {
   id: number;
@@ -92,6 +93,7 @@ const Slider = () => {
 
   return (
     <SCContainer>
+      <Nav />
       <SCSliderContainer width={width} height={height}>
         <SCImageContainer>
           {images.map(el => <SCImage key={el.id} xPosition={xPosition} width={width} height={height}>

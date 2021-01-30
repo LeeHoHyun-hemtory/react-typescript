@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, {css} from 'styled-components';
-import mixin from './styles/mixin';
+import Nav from '../../component/nav/Nav';
+import mixin from '../../styles/mixin';
 
 interface IItem {
   id: number;
@@ -109,6 +110,7 @@ const Pagination = () => {
 
   return (
     <SCContainer>
+      <Nav />
       <SCItemsContainer>
         {items.map(el => {
           if(el.id >= offset && el.id < offset + LIMIT) {
