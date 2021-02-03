@@ -24,7 +24,7 @@
 ## src/pages/FireBase/FireBase.ts
 - firebase config 파일
 
-## src/pages/FireBaseEX/FireBaseEX.tsx
+## src/pages/FireBase/FireBaseEX.tsx
 - firebase CRUD 간단한 예제 파일
 
 ## src/pages/Slider/Slider.tsx
