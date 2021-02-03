@@ -9,6 +9,15 @@
 
 ---
 
+## 추가 작업해야 될 내용
+- redux or context 적용
+- component 모듈화
+- 데이터 받아오는 간단한 서버 구축
+- 차트 만들어 보기
+- 만들어 볼 만한 기능 더 찾기
+
+---
+
 ## src/pages/Pagination/Pagination.tsx
 - 버튼으로 Pagination 하는 기능 만들기
 
