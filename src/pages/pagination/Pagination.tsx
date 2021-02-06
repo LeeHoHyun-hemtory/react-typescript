@@ -9,7 +9,6 @@ interface IItem {
 }
 
 const SCContainer = styled.div`
-  width: 100%;
   height: 100vh;
   ${mixin.flexSet()};
 `;
@@ -27,7 +26,7 @@ const SCItems = styled.div`
   border: 1px solid black;
 `;
 
-const SCPageBurronContainer = styled.div`
+const SCPageButtonContainer = styled.div`
   width: 50%;
   height: 20%;
   ${mixin.flexSet('center', 'center', 'row')};
@@ -118,13 +117,13 @@ const Pagination = () => {
           }
         })}
       </SCItemsContainer>
-      <SCPageBurronContainer>
+      <SCPageButtonContainer>
         <SCPageButton onClick={() => btnDirectOnClick('<<')}>{'<<'}</SCPageButton>
         <SCPageButton onClick={() => btnDirectOnClick('<')}>{'<'}</SCPageButton>
         {pages.map(num => (<SCPageButton key={num} value={num} currentPage={currentPage} onClick={() => btnOnClick(num)}>{num}</SCPageButton>))}
         <SCPageButton onClick={() => btnDirectOnClick('>')}>{'>'}</SCPageButton>
         <SCPageButton onClick={() => btnDirectOnClick('>>')}>{'>>'}</SCPageButton>
-      </SCPageBurronContainer>
+      </SCPageButtonContainer>
     </SCContainer>
   );
 };
