@@ -12,7 +12,7 @@ function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/pagination' component={Pagination}/>
+        <Route path='/' exact component={Pagination}/>
         <Route path='/fireBaseEx' component={FireBaseEX}/>
         <Route path='/Slider' component={Slider}/>
         <Route path='/infiniteSlider' component={InfiniteSlider}/>
