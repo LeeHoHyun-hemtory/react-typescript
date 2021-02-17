@@ -41,7 +41,7 @@ const InfiniteScroll = () => {
     SetImages(imgArr);
     setOffset(offset + LIMIT);
   }, []);
-console.log(images)
+
   useEffect(() => {
     window.addEventListener('scroll', () => {
       setScrollPosition(document.documentElement.scrollTop);
