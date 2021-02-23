@@ -5,7 +5,7 @@ import mixin from '../../styles/mixin';
 
 const SCContainer = styled.div`
   width: 100%;
-  height: 10%;
+  height: 70px;
   position: fixed;
   top: 0;
   ${mixin.flexSet('space-around', 'center', 'row')};
@@ -19,15 +19,18 @@ const SCLink = styled(Link)`
   color: black;
 `;
 
+const PAGELISTS = ['pagination', 'fireBaseEx', 'slider', 'infiniteSlider', 'infiniteScroll', 'autoSlider', 'test'];
+
 const Nav = () => {
   return (
     <SCContainer>
-      <SCLink to='/pagination'>pagination</SCLink>
+      {PAGELISTS.map((page, idx) => <SCLink key={idx} to={`/${page}`}>{page}</SCLink>)}
+      {/* <SCLink to='/'>pagination</SCLink>
       <SCLink to='/fireBaseEx'>fireBaseEx</SCLink>
       <SCLink to='/Slider'>Slider</SCLink>
       <SCLink to='/infiniteSlider'>infiniteSlider</SCLink>
       <SCLink to='/InfiniteScroll'>infiniteScroll</SCLink>
-      <SCLink to='/test'>test</SCLink>
+      <SCLink to='/test'>test</SCLink> */}
     </SCContainer>
   );
 };
