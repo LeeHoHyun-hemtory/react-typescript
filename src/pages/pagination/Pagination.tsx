@@ -28,7 +28,6 @@ const SCItems = styled.div`
 
 const SCPageButtonContainer = styled.div`
   width: 50%;
-  height: 20%;
   ${mixin.flexSet('center', 'center', 'row')};
 `;
 
