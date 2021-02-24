@@ -34,5 +34,11 @@
 ## src/pages/InfiniteSlider/InfiniteSlider.tsx
 - 무한 Slider 기능 만들기
 
-# src/pages/infiniteScroll/infiniteScroll.tsx
-- 무한 스크롤 기능 만들기 (미완성)
+## src/pages/infiniteScroll/infiniteScroll.tsx
+- 무한 스크롤 기능 만들기
+
+## src/pages/autoSlider/AutoSlider.tsx
+- 자동, 수동 슬라이더 만들기
+
+## src/pages/test/Test.tsx
+- 테스트용 파일
