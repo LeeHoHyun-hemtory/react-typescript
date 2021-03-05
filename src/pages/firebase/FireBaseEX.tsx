@@ -10,9 +10,26 @@ interface IPropsUserData {
   age: number;
 };
 
-const STDContainer = styled.div`
+const SCContainer = styled.div`
   ${mixin.flexSet()};
   height: 100vh;
+`;
+
+const SCInnerContainer = styled.div`
+  width: 80%;
+  height: 80%;
+  ${mixin.flexSet()};
+`;
+
+const SCInfoContainer = styled.div`
+  width: 100%;
+  ${mixin.flexSet('center', 'center', 'row')};
+
+  margin-bottom: 10px;
+`;
+
+const SCButton = styled.button`
+  margin-left: 10px;
 `;
 
 const FirebaseDB = () => {
@@ -33,52 +50,54 @@ const FirebaseDB = () => {
     })
   }, []);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.name === 'user' ? setUser(e.target.value) : setAge(e.target.value);
-  }
-
   const onClickAdd = () => {
     const userData = { user, age };
-
+    
     userRef.push(userData);
     setUser('');
     setAge('');
   }
-
+  
   const onClickRemove = (id: string) => {
     userRef.child(id).remove();
   }
-
+  
   const onUpdate = (id: string) => {
     const [user] = datas.filter(el => el.id === id);
-
+    
     userRef.child(id).update({
       age: user.age++
     });
-
+    
     setDatas(datas.map(el => el.id === id ? {...el, age: el.age++} : el));
   };
   
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.target.name === 'user' ? setUser(e.target.value) : setAge(e.target.value);
+  }
+
   return (
-    <STDContainer>
+    <SCContainer>
       <Nav />
-      <div>
-        {datas?.map(data => <div key={data.id}>
-          <div>
-            이름: {data.user}
-            <br />
-            나이: {data.age}
-          </div>
-          <button onClick={() => onUpdate(data.id)}>수정</button> <button onClick={() => onClickRemove(data.id)}>삭제</button>
+      <SCInnerContainer>
+        <div>
+          {datas?.map(data => <SCInfoContainer key={data.id}>
+            <div>
+              이름: {data.user}
+              <br />
+              나이: {data.age}
+            </div>
+            <SCButton onClick={() => onUpdate(data.id)}>수정</SCButton> <SCButton onClick={() => onClickRemove(data.id)}>삭제</SCButton>
+          </SCInfoContainer>
+          )}
         </div>
-        )}
-      </div>
-      <div>
-        <input onChange={onChange} name='user' placeholder='user' value={user}></input>
-        <input onChange={onChange} name='age' placeholder='age' value={age}></input>
-        <button onClick={onClickAdd}>추가하기</button>
-      </div>
-    </STDContainer>
+        <div>
+          <input onChange={onChange} name='user' placeholder='user' value={user}></input>
+          <input onChange={onChange} name='age' placeholder='age' value={age}></input>
+          <SCButton onClick={onClickAdd}>추가하기</SCButton>
+        </div>
+      </SCInnerContainer>
+    </SCContainer>
   );
 };
 
