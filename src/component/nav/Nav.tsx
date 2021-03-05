@@ -19,18 +19,12 @@ const SCLink = styled(Link)`
   color: black;
 `;
 
-const PAGELISTS = ['pagination', 'fireBaseEx', 'slider', 'infiniteSlider', 'infiniteScroll', 'autoSlider', 'test'];
+const PAGELISTS = ['pagination', 'fireBaseEx', 'slider', 'infiniteSlider', 'infiniteScroll', 'autoSlider', 'emailSend', 'test'];
 
 const Nav = () => {
   return (
     <SCContainer>
       {PAGELISTS.map((page, idx) => <SCLink key={idx} to={`/${page}`}>{page}</SCLink>)}
-      {/* <SCLink to='/'>pagination</SCLink>
-      <SCLink to='/fireBaseEx'>fireBaseEx</SCLink>
-      <SCLink to='/Slider'>Slider</SCLink>
-      <SCLink to='/infiniteSlider'>infiniteSlider</SCLink>
-      <SCLink to='/InfiniteScroll'>infiniteScroll</SCLink>
-      <SCLink to='/test'>test</SCLink> */}
     </SCContainer>
   );
 };
