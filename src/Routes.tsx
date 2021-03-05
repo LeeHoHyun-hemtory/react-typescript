@@ -7,6 +7,7 @@ import Slider from './pages/slider/Slider';
 import InfiniteSlider from './pages/infiniteSlider/InfiniteSlider';
 import InfiniteScroll from './pages/infiniteScroll/InfiniteScroll';
 import AutoSlider from './pages/autoSlider/AutoSlider';
+import EmailSend from './pages/emailSend/EmailSend';
 
 function Routes() {
   return (
@@ -19,6 +20,7 @@ function Routes() {
         <Route path='/infiniteSlider' component={InfiniteSlider}/>
         <Route path='/infiniteScroll' component={InfiniteScroll}/>
         <Route path='/autoSlider' component={AutoSlider}/>
+        <Route path='/emailSend' component={EmailSend}/>
         <Route path='/test' component={Test}/>
       </Switch>
     </BrowserRouter>
