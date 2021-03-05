@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import emailjs, { init } from 'emailjs-com';
+import { init } from 'emailjs-com';
 import Nav from '../../component/nav/Nav';
 import EmailSendSDK from './EmailSendSDK';
 import EmailSendAPI from './EmailSendAPI';
@@ -31,7 +31,7 @@ const SCEmailFormInnerContainer = styled.div`
 
 const EmailSend = () => {
   init("user_23XqyzEM8MpAgcVkK58kp");
-  
+
   return (
     <SCContainer>
       <Nav />
