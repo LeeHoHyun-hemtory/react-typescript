@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import emailjs, { init } from 'emailjs-com';
+import emailjs from 'emailjs-com';
 import mixin from '../../styles/mixin';
+import emailConfig from './emailConfig';
 
 const SCContainer = styled.div`
   ${mixin.flexSet()};
@@ -53,10 +54,8 @@ const EmailSendSDK = () => {
     }
   }
 
-  init("user_23XqyzEM8MpAgcVkK58kp");
-
   const onClick = (name: string, text: string) => {
-    emailjs.send('hemtory', 'template_z9iyu2t', { name, text })
+    emailjs.send(emailConfig.serviceId!, emailConfig.templateId!, { name, text })
     .then(res => setResponse(res.text === 'OK' ? '전송 성공' : '전송 실패'));
   }
 

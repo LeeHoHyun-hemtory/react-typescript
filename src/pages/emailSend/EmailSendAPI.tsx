@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import emailjs, { init } from 'emailjs-com';
 import mixin from '../../styles/mixin';
+import emailConfig from './emailConfig';
 
 const SCContainer = styled.div`
   ${mixin.flexSet()};
@@ -62,9 +62,9 @@ const EmailSendAPI = () => {
         'Content-type': 'application/json'
       },
       body: JSON.stringify({
-        user_id: 'user_23XqyzEM8MpAgcVkK58kp',
-        service_id: 'hemtory',
-        template_id: 'template_z9iyu2t',
+        user_id: emailConfig.userId,
+        service_id: emailConfig.serviceId,
+        template_id: emailConfig.templateId,
         template_params: {
           name,
           text,
