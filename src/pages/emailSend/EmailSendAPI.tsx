@@ -54,6 +54,8 @@ const EmailSendAPI = () => {
   }
 
   const onClick = (name: string, text: string) => {
+    setResponse('');
+    
     fetch('https://api.emailjs.com/api/v1.0/email/send', {
       method: 'POST',
       headers: {
@@ -65,7 +67,9 @@ const EmailSendAPI = () => {
         template_id: 'template_z9iyu2t',
         template_params: {
           name,
-          text
+          text,
+          from_name: 'hemtory',
+          email_addr: 'qwer@qwer.net'
         }
       })
     }).then(res => setResponse(res.ok ? '전송 성공' : '전송 실패'));
