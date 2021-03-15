@@ -102,7 +102,7 @@ const AutoSlider = () => {
       setMouseActive(true);
     }, 1000);
   }, [xPosition]);
-console.log(xPosition)
+
   useEffect(() => {
     if(!onTimer) {
       setOnTimer(true);
