@@ -116,15 +116,15 @@ const AutoSlider = () => {
 
   const moveImage = (dir: string) => {
     setOnTimer(false);
-
     setMouseActive(false);
+
     if(dir === 'left' && mouseActive) {
       setTransition(1);
-      setXPosition(xPosition - width);
+      setXPosition(xPosition + width);
     }
     else if(dir === 'right' && mouseActive) {
       setTransition(1);
-      setXPosition(xPosition + width);
+      setXPosition(xPosition - width);
     }
   }
 
