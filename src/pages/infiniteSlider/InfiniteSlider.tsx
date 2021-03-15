@@ -81,10 +81,8 @@ const InfiniteSlider = () => {
       {id: 3, url: 'https://newsimg.hankookilbo.com/cms/articlerelease/2020/09/13/c22a51dd-d1f8-48d2-82ad-f18a671078be.jpg'}
     ];
 
-    // 무한 슬라이더
     imgArr.unshift({id: -1, url: imgArr[imgArr.length - 1].url});
     imgArr.push({id: imgArr.length, url: imgArr[1].url});
-    //
 
     setImages(imgArr);
   }, []);
