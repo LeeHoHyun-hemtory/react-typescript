@@ -98,7 +98,7 @@ const InfiniteSlider = () => {
         setXPosition(width * -1);
       }
       setMouseActive(true);
-    }, 1000);
+    }, 1100);
   }, [xPosition]);
 
   const moveImage = (dir: string) => {
