@@ -110,8 +110,8 @@ const AutoSlider = () => {
   }, [onTimer]);
 
   useInterval(() => {
-    setXPosition(xPosition - width);
     setTransition(1);
+    setXPosition(xPosition - width);
   }, onTimer ? 3000 : null);
 
   const moveImage = (dir: string) => {

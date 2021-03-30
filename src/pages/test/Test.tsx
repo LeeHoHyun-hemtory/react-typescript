@@ -8,6 +8,10 @@ const SCContainer = styled.div`
   ${mixin.flexSet('center', 'center', 'column')};
 `;
 
+const SCAudio = styled.audio`
+  width: 600px;
+`
+
 interface Param {
   (name: string,
   age?: number,
@@ -37,6 +41,7 @@ const Test = () => {
       <Nav />
       <div>x Position: {mouseP.x}</div>
       <div>y Position: {mouseP.y}</div>
+      <SCAudio onPlay={() => alert('audio')} src='https://t1.daumcdn.net/cfile/tistory/195F9B134C5A45C838?original' controls/>
       {/* <Img src='https://www.ui4u.go.kr/depart/img/content/sub03/img_con03030100_01.jpg'></Img>
       <Img src='https://www.ui4u.go.kr/depart/img/content/sub03/img_con03030100_01.jpg'></Img>
       <Img src='https://www.ui4u.go.kr/depart/img/content/sub03/img_con03030100_01.jpg'></Img> */}
