@@ -19,7 +19,7 @@ const SCLink = styled(Link)`
   color: black;
 `;
 
-const PAGELISTS = ['pagination', 'fireBaseEx', 'slider', 'infiniteSlider', 'infiniteScroll', 'autoSlider', 'emailSend', 'test'];
+const PAGELISTS = ['pagination', 'fireBaseEx', 'slider', 'infiniteSlider', 'infiniteScroll', 'autoSlider', 'emailSend', 'socialLogin', 'test'];
 
 const Nav = () => {
   return (
