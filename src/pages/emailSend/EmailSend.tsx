@@ -5,7 +5,9 @@ import Nav from '../../component/nav/Nav';
 import EmailSendSDK from './EmailSendSDK';
 import EmailSendAPI from './EmailSendAPI';
 import mixin from '../../styles/mixin';
-import emailConfig from './emailConfig';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const SCContainer = styled.div`
   height: 100vh;
@@ -31,7 +33,7 @@ const SCEmailFormInnerContainer = styled.div`
 `;
 
 const EmailSend = () => {
-  init(emailConfig.userId!);
+  init(process.env.REACT_APP_EMAILJS_USER_ID!);
 
   return (
     <SCContainer>

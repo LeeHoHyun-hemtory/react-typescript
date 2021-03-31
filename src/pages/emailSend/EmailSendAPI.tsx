@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import mixin from '../../styles/mixin';
-import emailConfig from './emailConfig';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const SCContainer = styled.div`
   ${mixin.flexSet()};
@@ -62,9 +64,9 @@ const EmailSendAPI = () => {
         'Content-type': 'application/json'
       },
       body: JSON.stringify({
-        user_id: emailConfig.userId,
-        service_id: emailConfig.serviceId,
-        template_id: emailConfig.templateId,
+        user_id: process.env.REACT_APP_EMAILJS_USER_ID,
+        service_id: process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        template_id: process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
         template_params: {
           name,
           text,

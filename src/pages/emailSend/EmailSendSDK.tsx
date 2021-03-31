@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import emailjs from 'emailjs-com';
 import mixin from '../../styles/mixin';
-import emailConfig from './emailConfig';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const SCContainer = styled.div`
   ${mixin.flexSet()};
@@ -55,7 +57,7 @@ const EmailSendSDK = () => {
   }
 
   const onClick = (name: string, text: string) => {
-    emailjs.send(emailConfig.serviceId!, emailConfig.templateId!, { name, text })
+    emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID!, process.env.REACT_APP_EMAILJS_TEMPLATE_ID!, { name, text })
     .then(res => setResponse(res.text === 'OK' ? '전송 성공' : '전송 실패'));
   }
 
