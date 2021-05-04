@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import mixin from '../../styles/mixin';
 
@@ -19,7 +19,7 @@ const SCLink = styled(Link)`
   color: black;
 `;
 
-const PAGELISTS = ['pagination', 'fireBaseEx', 'slider', 'infiniteSlider', 'infiniteScroll', 'autoSlider', 'emailSend', 'socialLogin', 'test'];
+const PAGELISTS = ['pagination', 'fireBaseEx', 'slider', 'infiniteSlider', 'infiniteScroll', 'autoSlider', 'emailSend', 'test'];
 
 const Nav = () => {
   return (
