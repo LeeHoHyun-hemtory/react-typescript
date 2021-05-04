@@ -6,16 +6,8 @@
 - styled-components
 - typescript
 - react-router-dom
-
----
-
-## 추가 작업해야 될 내용
-- redux or context 적용
-- component 모듈화
-- 데이터 받아오는 간단한 서버 구축
-- 차트 만들어 보기
-- 소셜 회원가입, 로그인 만들어 보기
-- 만들어 볼 만한 기능 더 찾기
+- firebase
+- emailjs-com
 
 ---
 
