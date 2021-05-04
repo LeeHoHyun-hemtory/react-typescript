@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Nav from '../../component/nav/Nav';
 import mixin from '../../styles/mixin';
 
 const SCContainer = styled.div`
@@ -27,6 +26,12 @@ const Img = styled.img`
   }
 `;
 
+const SCDragDiv = styled.div`
+  width: 100px;
+  height: 100px;
+  background: yellow;
+`;
+
 const Test = () => {
   // 마우스 좌표
   const [mouseP, setMouseP] = useState({x: 0, y: 0});
@@ -36,15 +41,18 @@ const Test = () => {
     setMouseP({...mouseP, x: e.clientX, y: e.clientY})
   }
 
+  
+
   return (
     <SCContainer onMouseMove={mouseMove}>
-      <Nav />
       <div>x Position: {mouseP.x}</div>
       <div>y Position: {mouseP.y}</div>
       <SCAudio onPlay={() => alert('audio')} src='https://t1.daumcdn.net/cfile/tistory/195F9B134C5A45C838?original' controls/>
       {/* <Img src='https://www.ui4u.go.kr/depart/img/content/sub03/img_con03030100_01.jpg'></Img>
       <Img src='https://www.ui4u.go.kr/depart/img/content/sub03/img_con03030100_01.jpg'></Img>
       <Img src='https://www.ui4u.go.kr/depart/img/content/sub03/img_con03030100_01.jpg'></Img> */}
+
+      <SCDragDiv draggable='true' />
     </SCContainer>
   );
 };

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled, {css} from 'styled-components';
-import Nav from '../../component/nav/Nav';
 import mixin from '../../styles/mixin';
 
 interface IItem {
@@ -68,7 +67,7 @@ const Pagination = () => {
     }
 
     // 아이템 추가
-    for(let i = 0; i < 100; i++) {
+    for(let i = 0; i < 200; i++) {
       itemsArr.push({ id: i, contents: i });
     }
 
@@ -108,7 +107,6 @@ const Pagination = () => {
 
   return (
     <SCContainer>
-      <Nav />
       <SCItemsContainer>
         {items.map(el => {
           if(el.id >= offset && el.id < offset + LIMIT) {

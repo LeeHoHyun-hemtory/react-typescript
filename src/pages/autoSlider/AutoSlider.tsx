@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import Nav from '../../component/nav/Nav';
 import mixin from '../../styles/mixin';
 import useInterval from '../../hooks/useInterval';
 
@@ -130,7 +129,6 @@ const AutoSlider = () => {
 
   return (
     <SCContainer>
-      <Nav />
       <SCSliderContainer width={width} height={height}>
         <SCImageContainer>
           {images.map(el => <SCImage key={el.id} xPosition={xPosition} width={width} height={height} transition={transition}>

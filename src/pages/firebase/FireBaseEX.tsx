@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import firebase from './FireBase';
 import mixin from '../../styles/mixin';
-import Nav from '../../component/nav/Nav';
 
 interface IPropsUserData {
   id: string;
@@ -78,7 +77,6 @@ const FirebaseDB = () => {
 
   return (
     <SCContainer>
-      <Nav />
       <SCInnerContainer>
         <div>
           {datas?.map(data => <SCInfoContainer key={data.id}>

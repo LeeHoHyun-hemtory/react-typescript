@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
-import Nav from '../../component/nav/Nav';
+import styled from 'styled-components';
 import mixin from '../../styles/mixin';
 
 interface IImage {
@@ -55,7 +54,6 @@ const InfiniteScroll = () => {
 
   return (
     <SCContainer>
-      <Nav />
       <SCScrollContainer>
         <SCImagesContainer>
           {images.map(el => <SCImage key={el.id} src={el.url} />)}

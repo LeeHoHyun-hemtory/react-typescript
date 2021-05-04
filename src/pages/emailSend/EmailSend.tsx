@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { init } from 'emailjs-com';
-import Nav from '../../component/nav/Nav';
 import EmailSendSDK from './EmailSendSDK';
 import EmailSendAPI from './EmailSendAPI';
 import mixin from '../../styles/mixin';
@@ -37,7 +36,6 @@ const EmailSend = () => {
 
   return (
     <SCContainer>
-      <Nav />
       <SCEmailFormContainer>
         <SCEmailFormInnerContainer>
           <EmailSendSDK />
