@@ -1,4 +1,4 @@
-# React - typescript 테스트용
+# React - typescript 테스트 및 기능 만들어보기
 
 ## tech stack
 - React.js
